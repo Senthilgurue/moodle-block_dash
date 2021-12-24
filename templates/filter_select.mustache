@@ -23,7 +23,7 @@
 		"courseurl": "https://localhost/moodle/course/view.php?id=2"
     }
 }}
-<select name="{{name}}" class="form-control filter-form-control select2" {{#multiple}}multiple{{/multiple}} style="min-width: 300px;">
+<select name="{{#name}}{{name}}{{/name}}{{^name}}name{{/name}}" class="form-control filter-form-control select2" {{#multiple}}multiple{{/multiple}} style="min-width: 300px;">
     {{#options}}
         <option value="{{value}}" {{#selected}}selected{{/selected}}>{{label}}</option>
     {{/options}}

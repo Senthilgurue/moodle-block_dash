@@ -37,6 +37,9 @@
                                 <th class="dash-sort" data-sort="{{get_name}}">{{get_label}}</th>
                             {{/is_visible}}
                         {{/data.first_child.data}}
+                        {{^data.first_child.data}}
+                            <th></th>
+                        {{/data.first_child.data}}
                     </tr>
                 </thead>
                 <tbody>

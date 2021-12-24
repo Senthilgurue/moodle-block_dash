@@ -23,4 +23,9 @@
 		"courseurl": "https://localhost/moodle/course/view.php?id=2"
     }
 }}
-<span>{{label}}</span> <input type="text" name="{{name}}" class="form-control filter-form-control datepicker" value="{{value}}">
+<span>{{label}}</span>
+<input
+    type="text"
+    name="{{#name}}{{name}}{{/name}}{{^name}}name{{/name}}"
+    class="form-control filter-form-control datepicker"
+    value="{{value}}">

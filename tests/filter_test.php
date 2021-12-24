@@ -128,4 +128,3 @@ class filter_test extends \advanced_testcase {
         $this->assertEmpty($this->filtercollection->get_cache($this->user));
     }
 }
-

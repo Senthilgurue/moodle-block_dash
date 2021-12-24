@@ -57,4 +57,3 @@ class field_definition_factory_test extends \advanced_testcase {
             'Ensure missing field is returned as null');
     }
 }
-

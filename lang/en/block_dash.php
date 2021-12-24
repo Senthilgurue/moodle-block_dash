@@ -280,3 +280,4 @@ If a URL is specified, users shall be redirected to that URL";
 $string['courseredirecturl'] = 'Course redirect URL';
 $string['courseredirecturldesc'] = 'Enter the URL to redirect the users from course index page.';
 $string['courseimagelink'] = 'Course image link';
+$string['backgroundimagefield'] = 'Background image';

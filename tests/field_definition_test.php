@@ -87,4 +87,3 @@ class field_definition_test extends \advanced_testcase {
         $this->assertCount(0, $this->fielddefinition->get_attributes(), 'Ensure no attributes are returned.');
     }
 }
-

@@ -54,7 +54,9 @@ class field implements field_interface {
     private $table;
 
     /**
-     * @var string|array|null SQL select statement. If left null the name will be used (table_alias.name). An array of different selects based on dbtype is also possible ['select' => '', 'select_pgsql' => ''].
+     * @var string|array|null SQL select statement.
+     * If left null the name will be used (table_alias.name).
+     * An array of different selects based on dbtype is also possible ['select' => '', 'select_pgsql' => ''].
      */
     private $select;
 
@@ -94,7 +96,9 @@ class field implements field_interface {
      * @param string $name The column name of the field as it appears in the table (e.g. firstname).
      * @param lang_string $title Human readable name of field (e.g. Firstname).
      * @param table $table The table this field belongs to.
-     * @param string|array|null $select SQL select statement. If left null the name will be used (table_alias.name). An array of different selects based on dbtype is also possible ['select' => '', 'select_pgsql' => ''].
+     * @param string|array|null $select SQL select statement.
+     * If left null the name will be used (table_alias.name).
+     * An array of different selects based on dbtype is also possible ['select' => '', 'select_pgsql' => ''].
      * @param array $attributes Field attributes to be added immediately.
      * @param array $options Arbitrary options belonging to this field.
      * @param int $visibility Visibility of the field (if it should be displayed to the user).
@@ -126,7 +130,7 @@ class field implements field_interface {
      * @param \stdClass $record Full record from database.
      * @return mixed
      */
-    public final function transform_data($data, \stdClass $record) {
+    final public function transform_data($data, \stdClass $record) {
         foreach ($this->attributes as $attribute) {
             $data = $attribute->transform_data($data, $record);
         }
@@ -134,7 +138,7 @@ class field implements field_interface {
         return $data;
     }
 
-    #region Property methods
+    // Region Property methods.
 
     /**
      * Get the column name of the field as it appears in the table (e.g. firstname).
@@ -220,19 +224,19 @@ class field implements field_interface {
      */
     public function set_visibility($visibility) {
         // Warn the developer if they have used an invalid visibility.
-        // @codeCoverageIgnoreStart
+        // ...@codeCoverageIgnoreStart.
         if (!in_array($visibility, [self::VISIBILITY_HIDDEN, self::VISIBILITY_VISIBLE])) {
             debugging('Invalid visibility set on field ' . get_class($this) . ': ' . $visibility, DEBUG_DEVELOPER);
             // So the application doesn't break, default to visible.
             $visibility = self::VISIBILITY_VISIBLE;
         }
-        // @codeCoverageIgnoreEnd
+        // ...@ codeCoverageIgnoreEnd.
         $this->visibility = $visibility;
     }
 
-    #endregion
+    // Endregion.
 
-    #region Attributes
+    // Region Attributes.
 
     /**
      * Add attribute to this field definition.
@@ -282,9 +286,9 @@ class field implements field_interface {
         return false;
     }
 
-    #endregion
+    // Endregion.
 
-    #region Options
+    // Region Options.
 
     /**
      * Get a single option.
@@ -326,9 +330,9 @@ class field implements field_interface {
         return $this->options;
     }
 
-    #endregion
+    // Endregion.
 
-    #region Sorting
+    // Region Sorting.
 
     /**
      * Set if field should be sorted.
@@ -397,7 +401,7 @@ class field implements field_interface {
         return $this->get_alias();
     }
 
-    #endregion
+    // Endregion.
 
     /**
      * Get custom form.
@@ -409,7 +413,7 @@ class field implements field_interface {
             . '][enabled]" value="1">';
 
         $html .= '<input type="text" name="available_fields[' . $this->get_alias()
-            . '][title_override]" placeholder="' . get_string('titleoverride', 'block_dash') . '" 
+            . '][title_override]" placeholder="' . get_string('titleoverride', 'block_dash') . '"
             value="' . $this->get_title() . '">';
 
         return $html;

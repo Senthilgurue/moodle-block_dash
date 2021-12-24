@@ -35,6 +35,8 @@ defined('MOODLE_INTERNAL') || die();
  */
 class rename_ids_attribute extends abstract_field_attribute {
 
+
+    /** @var array stored the fields used in current table.*/
     private static $fieldstore = [];
 
     /**
@@ -46,7 +48,7 @@ class rename_ids_attribute extends abstract_field_attribute {
      * @return mixed
      * @throws \moodle_exception
      */
-    public final function transform_data($data, \stdClass $record) {
+    final public function transform_data($data, \stdClass $record) {
 
         $fields = [];
 
@@ -67,7 +69,7 @@ class rename_ids_attribute extends abstract_field_attribute {
     /**
      * Override in child class to add additional checks per ID.
      *
-     * @param $id
+     * @param int $id
      * @return bool
      */
     public function check_id($id) {
@@ -75,8 +77,10 @@ class rename_ids_attribute extends abstract_field_attribute {
     }
 
     /**
-     * @param $table
-     * @param $field
+     * Get the fields used in this table.
+     *
+     * @param string $table
+     * @param string $field
      * @return mixed
      * @throws dml_exception
      */

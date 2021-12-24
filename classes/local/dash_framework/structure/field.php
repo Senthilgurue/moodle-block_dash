@@ -224,7 +224,7 @@ class field implements field_interface {
      */
     public function set_visibility($visibility) {
         // Warn the developer if they have used an invalid visibility.
-        // ...@codeCoverageIgnoreStart.
+        // ...@ codeCoverageIgnoreStart.
         if (!in_array($visibility, [self::VISIBILITY_HIDDEN, self::VISIBILITY_VISIBLE])) {
             debugging('Invalid visibility set on field ' . get_class($this) . ': ' . $visibility, DEBUG_DEVELOPER);
             // So the application doesn't break, default to visible.
@@ -254,8 +254,8 @@ class field implements field_interface {
      * @param field_attribute_interface $attribute
      */
     public function remove_attribute(field_attribute_interface $attribute) {
-        foreach ($this->attributes as $key => $searchattribute) {
-            if ($searchattribute === $attribute) {
+        foreach ($this->attributes as $key => $fsearchattribute) {
+            if ($fsearchattribute === $attribute) {
                 unset($this->attributes[$key]);
             }
         }
@@ -277,8 +277,8 @@ class field implements field_interface {
      * @return bool
      */
     public function has_attribute($classname) {
-        foreach ($this->get_attributes() as $attribute) {
-            if (get_class($attribute) == $classname) {
+        foreach ($this->get_attributes() as $fattribute) {
+            if (get_class($fattribute) == $classname) {
                 return true;
             }
         }
@@ -293,21 +293,21 @@ class field implements field_interface {
     /**
      * Get a single option.
      *
-     * @param string $name
+     * @param string $optname
      * @return mixed|null
      */
-    public function get_option($name) {
-        return isset($this->options[$name]) ? $this->options[$name] : null;
+    public function get_option($optname) {
+        return isset($this->options[$optname]) ? $this->options[$optname] : null;
     }
 
     /**
      * Set option on field.
      *
      * @param string $name
-     * @param string $value
+     * @param string $optvalue
      */
-    public function set_option($name, $value) {
-        $this->options[$name] = $value;
+    public function set_option($name, $optvalue) {
+        $this->options[$name] = $optvalue;
     }
 
     /**
@@ -316,8 +316,8 @@ class field implements field_interface {
      * @param array $options
      */
     public function set_options($options) {
-        foreach ($options as $name => $value) {
-            $this->set_option($name, $value);
+        foreach ($options as $optname => $value) {
+            $this->set_option($optname, $value);
         }
     }
 
@@ -341,8 +341,9 @@ class field implements field_interface {
      * @throws \Exception
      */
     public function set_sort($sort) {
+
         if (!is_bool($sort)) {
-            throw new \Exception('Sort expected to be a bool.');
+            throw new \Exception('Sort expected to be a boolean.');
         }
 
         $this->sort = $sort;
@@ -376,7 +377,8 @@ class field implements field_interface {
      * @return string
      */
     public function get_sort_direction() {
-        return $this->sortdirection;
+        $dir = $this->sortdirection;
+        return $dir;
     }
 
     /**
@@ -394,8 +396,9 @@ class field implements field_interface {
      * @return string
      */
     public function get_sort_select() {
-        if (!is_null($this->sortselect)) {
-            return $this->sortselect;
+        $sort = $this->sortselect;
+        if (!is_null($sort)) {
+            return $sort;
         }
 
         return $this->get_alias();

@@ -39,7 +39,7 @@
             body: body,
             type: ModalFactory.types.SAVE_CANCEL,
             large: true
-        }, trigger).done((modal) => {
+        }, trigger).done(function(modal) {
             modal.getRoot().on(Events.shown, function() {
                 var params = JSON.stringify(trigger.data('params'), null, 2);
                 $(this).find('.modal-body').find('pre').html(params);

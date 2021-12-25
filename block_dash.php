@@ -144,6 +144,7 @@ class block_dash extends block_base {
         }
 
         $this->page->requires->css(new \moodle_url('/blocks/dash/select2.min.css'));
+        $this->page->requires->css(new \moodle_url('/blocks/dash/datepicker.css'));
 
         return $this->content;
     }

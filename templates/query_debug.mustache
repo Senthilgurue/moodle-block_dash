@@ -23,16 +23,28 @@
 		"courseurl": "https://localhost/moodle/course/view.php?id=2"
     }
 }}
-<button id="query-debug-modal-{{uniqueid}}-trigger" data-body="{{query}} <pre>{{params}}</pre>" class="btn btn-secondary btn-default btn-sm"><i class="fa fa-code"></i> {{#str}}querydebug, block_dash{{/str}}</button>
+<button id="query-debug-modal-{{uniqueid}}-trigger" data-body="{{query}}<pre></pre>" data-params="{{params}}" class="btn btn-secondary btn-default btn-sm">
+<i class="fa fa-code"></i> {{#str}}querydebug, block_dash{{/str}}
+</button>
 
 {{#js}}
-    require(['jquery', 'core/modal_factory'], function($, ModalFactory) {
+    require(['jquery', 'core/modal_factory', 'core/modal_events'], function($, ModalFactory, Events) {
         var trigger = $('#query-debug-modal-{{uniqueid}}-trigger');
-        ModalFactory.create({
+        var body = '<p>'+trigger.data('body')+'</p>';
+
+        trigger.attr('data-body', body);
+
+        var md = ModalFactory.create({
             title: '{{#str}}querydebug, block_dash{{/str}}',
-            body: trigger.data('body'),
+            body: body,
             type: ModalFactory.types.SAVE_CANCEL,
             large: true
-        }, trigger);
+        }, trigger).done((modal) => {
+            modal.getRoot().on(Events.shown, function() {
+                var params = JSON.stringify(trigger.data('params'), null, 2);
+                $(this).find('.modal-body').find('pre').html(params);
+                console.log($(this));
+            });
+        })
     });
 {{/js}}

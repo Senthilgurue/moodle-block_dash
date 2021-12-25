@@ -79,7 +79,7 @@ final class query_debug implements \renderable, \templatable {
     public function export_for_template(renderer_base $output): array {
         return [
             'query' => $this->query,
-            'params' => print_r($this->params, true),
+            'params' => json_encode($this->params, true),
             'uniqueid' => uniqid()
         ];
     }

@@ -1,6 +1,6 @@
 .path-local-dash .CodeMirror {
     border: 1px solid #eee;
-    height: auto !important;
+    height: auto;
     width: 100%;
     z-index: 0;
 }
@@ -98,6 +98,6 @@ body#page-blocks-dash-data-source .ui-sortable-helper {
 
 /* Select2 styles */
 
-.select2-container {
-    display: inline-block !important;
+body .select2-container {
+    display: inline-block;
 }

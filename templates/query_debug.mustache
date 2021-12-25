@@ -30,11 +30,9 @@
 {{#js}}
     require(['jquery', 'core/modal_factory', 'core/modal_events'], function($, ModalFactory, Events) {
         var trigger = $('#query-debug-modal-{{uniqueid}}-trigger');
-        var body = '<p>'+trigger.data('body')+'</p>';
+        var body = '<p>' + trigger.data('body') + '</p>';
 
-        trigger.attr('data-body', body);
-
-        var md = ModalFactory.create({
+        ModalFactory.create({
             title: '{{#str}}querydebug, block_dash{{/str}}',
             body: body,
             type: ModalFactory.types.SAVE_CANCEL,
@@ -43,7 +41,6 @@
             modal.getRoot().on(Events.shown, function() {
                 var params = JSON.stringify(trigger.data('params'), null, 2);
                 $(this).find('.modal-body').find('pre').html(params);
-                console.log($(this));
             });
         })
     });

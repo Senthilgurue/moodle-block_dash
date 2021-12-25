@@ -31,18 +31,18 @@ jobs:
           - php: '8.0'
             moodle-branch: 'master'
             database: 'pgsql'
-          - php: '7.4'
-            moodle-branch: 'MOODLE_311_STABLE'
-            database: 'mariadb'
-          - php: '7.4'
-            moodle-branch: 'MOODLE_311_STABLE'
-            database: 'pgsql'
-          - php: '7.4'
-            moodle-branch: 'MOODLE_310_STABLE'
-            database: 'pgsql'
-          - php: '7.3'
-            moodle-branch: 'MOODLE_39_STABLE'
-            database: 'mariadb'
+          # - php: '7.4'
+          #   moodle-branch: 'MOODLE_311_STABLE'
+          #   database: 'mariadb'
+          # - php: '7.4'
+          #   moodle-branch: 'MOODLE_311_STABLE'
+          #   database: 'pgsql'
+          # - php: '7.4'
+          #   moodle-branch: 'MOODLE_310_STABLE'
+          #   database: 'pgsql'
+          # - php: '7.3'
+          #   moodle-branch: 'MOODLE_39_STABLE'
+          #   database: 'mariadb'
 
     steps:
       - name: Check out repository code
@@ -70,7 +70,7 @@ jobs:
         env:
           DB: ${{ matrix.database }}
           MOODLE_BRANCH: ${{ matrix.moodle-branch }}
-          IGNORE_NAMES: 'extra_css.mustache'
+          IGNORE_NAMES: 'extra_css.mustache, select2.js, select2.min.js, select2.min.css'
 
       - name: PHP Lint
         if: ${{ always() }}

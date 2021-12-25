@@ -2,11 +2,11 @@
  * Add a create new group modal to the page.
  *
  * @module     core_group/newgroup
- * @class      PreferencesModal 
+ * @class      PreferencesModal
  * @copyright  2017 Damyon Wiese <damyon@moodle.com>
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
-define(['jquery', 'jqueryui', 'core/str', 'core/modal_factory', 'core/modal_events', 
+define(['jquery', 'jqueryui', 'core/str', 'core/modal_factory', 'core/modal_events',
         'core/fragment', 'core/ajax', 'block_dash/select2', 'core/notification'],
     function($, jqueryui, Str, ModalFactory, ModalEvents, Fragment, Ajax, Select2, Notification) {
 

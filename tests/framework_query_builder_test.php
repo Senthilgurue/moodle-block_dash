@@ -38,7 +38,7 @@ defined('MOODLE_INTERNAL') || die();
  * @group bdecent
  * @group query_builder_test
  */
-class block_dash_framework_query_builder_test extends \advanced_testcase {
+class framework_query_builder_test extends \advanced_testcase {
 
     public function test_where() {
         $this->resetAfterTest();

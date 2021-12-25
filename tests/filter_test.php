@@ -54,7 +54,7 @@ class filter_test extends \advanced_testcase {
     /**
      * This method is called before each test.
      */
-    protected function setUp() {
+    protected function setUp(): void {
         $this->resetAfterTest();
         $this->setAdminUser();
 

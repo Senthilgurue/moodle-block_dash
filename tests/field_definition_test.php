@@ -48,7 +48,7 @@ class field_definition_test extends \advanced_testcase {
     /**
      * This method is called before each test.
      */
-    protected function setUp() {
+    protected function setUp(): void {
         $this->fielddefinition = new sql_field_definition('u.id', 'u_id', 'User ID');
     }
 

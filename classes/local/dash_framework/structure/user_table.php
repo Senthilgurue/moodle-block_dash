@@ -103,7 +103,7 @@ class user_table extends table {
                 new image_url_attribute(),
                 new user_image_url_attribute()
             ]),
-            new field('picture', new lang_string('pictureofuser'), $this, null, [
+            new field('picture', new lang_string('pictureofuser'), $this, 'u.id', [
                 new user_image_url_attribute(),
                 new image_attribute(['title' => new lang_string('pictureofuser')])
             ]),

@@ -46,7 +46,7 @@ class current_course_condition extends condition {
             return [null];
         }
 
-        return [$coursecontext->id];
+        return [$coursecontext->instanceid];
     }
 
     /**
@@ -69,11 +69,11 @@ class current_course_condition extends condition {
      * @return array
      * @throws \coding_exception|\dml_exception
      */
-    public function get_sql_and_params() {
+  /*   public function get_sql_and_params() {
         global $USER;
 
         list($sql, $params) = parent::get_sql_and_params();
-
+print_r($params);exit;
         if ($sql) {
             if (!$coursecontext = $this->get_context()->get_course_context(false)) {
                 return ['', []];
@@ -82,5 +82,5 @@ class current_course_condition extends condition {
         }
 
         return [$sql, $params];
-    }
+    } */
 }

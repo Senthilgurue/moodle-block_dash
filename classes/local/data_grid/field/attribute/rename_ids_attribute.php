@@ -49,21 +49,18 @@ class rename_ids_attribute extends abstract_field_attribute {
      * @throws \moodle_exception
      */
     final public function transform_data($data, \stdClass $record) {
-
-        $fields = [];
-
+        $groups = [];
         if ($data) {
             foreach (explode($this->get_option('delimiter'), $data) as $id) {
-                if ($this->check_id($id)) {
+                if ($this->check_id($id) && $id != '') {
                     $fields = self::get_fields($this->get_option('table'), $this->get_option('field'));
                     if (isset($fields[$id])) {
-                        $fields[] = $fields[$id];
+                        $groups[] = $fields[$id];
                     }
                 }
             }
         }
-
-        return implode($this->get_option('delimiter') . ' ', $fields);
+        return implode($this->get_option('delimiter') . ' ', $groups);
     }
 
     /**

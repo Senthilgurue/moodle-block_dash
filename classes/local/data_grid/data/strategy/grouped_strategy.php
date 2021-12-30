@@ -71,6 +71,18 @@ class grouped_strategy implements data_strategy_interface {
         $griddata = new data_collection();
 
         $sections = [];
+
+        $groupby = $this->groupbyfielddefinition->get_alias();        
+        if ($groupby == 'u_group_names') {
+            foreach ($records as $user) {
+                $groups = $user->u_group_names;
+                if (!empty($groups)) {
+                    $expgroups = explode(',', $groups);
+                }
+                // $groups = 
+            }
+        }
+        
         foreach ($records as $fullrecord) {
             $record = clone $fullrecord;
             $row = new data_collection();

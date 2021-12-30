@@ -109,14 +109,6 @@ abstract class abstract_data_source implements data_source_interface, \templatab
      */
     public function __construct(\context $context) {
         $this->context = $context;
-
-        $this->paginator = new paginator(function () {
-            $count = $this->get_query()->count();
-            if ($maxlimit = $this->get_max_limit()) {
-                return $maxlimit < $count ? $maxlimit : $count;
-            }
-            return $count;
-        });
     }
 
     /**
@@ -177,6 +169,22 @@ abstract class abstract_data_source implements data_source_interface, \templatab
      * @return paginator
      */
     public function get_paginator(): paginator {
+        if ($this->get_layout()->supports_pagination()) {
+            $perpage = (int) $this->get_preferences('perpage');
+        }
+        $perpage = ($perpage) ? $perpage : \block_dash\local\paginator::PER_PAGE_DEFAULT;
+
+        
+        if ($this->paginator == null) {
+            $this->paginator = new paginator(function () {
+                $count = $this->get_query()->count();            
+                if ($maxlimit = $this->get_max_limit()) {                
+                    return $maxlimit < $count ? $maxlimit : $count;
+                }
+                return $count;
+            }, 0, $perpage);
+        }        
+
         return $this->paginator;
     }
 

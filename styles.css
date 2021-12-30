@@ -101,3 +101,8 @@ body#page-blocks-dash-data-source .ui-sortable-helper {
 body .select2-container {
     display: inline-block;
 }
+
+.dash-block-content .card img.img-responsive {
+    max-height: 120px;
+    object-fit: cover;
+}

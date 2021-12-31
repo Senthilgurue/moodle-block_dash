@@ -62,25 +62,4 @@ class current_course_condition extends condition {
 
         return get_string('currentcourse', 'block_dash');
     }
-
-    /**
-     * Return where SQL and params for placeholders.
-     *
-     * @return array
-     * @throws \coding_exception|\dml_exception
-     */
-  /*   public function get_sql_and_params() {
-        global $USER;
-
-        list($sql, $params) = parent::get_sql_and_params();
-print_r($params);exit;
-        if ($sql) {
-            if (!$coursecontext = $this->get_context()->get_course_context(false)) {
-                return ['', []];
-            }
-            $sql = 'EXISTS (SELECT * FROM {role_assignments} ra100 WHERE ra100.userid = ' . $USER->id . ' AND ' . $sql . ')';
-        }
-
-        return [$sql, $params];
-    } */
 }

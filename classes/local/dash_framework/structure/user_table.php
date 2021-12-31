@@ -135,7 +135,6 @@ class user_table extends table {
                 'select_pgsql' => "(SELECT string_agg(g200.id::text, ',') FROM {groups} g200
                                     JOIN {groups_members} gm200 ON gm200.groupid = g200.id AND gm200.userid = u.id)",
             ], [
-                new identifier_attribute(),
                 new rename_group_ids_attribute([
                     'table' => 'groups',
                     'field' => 'name',

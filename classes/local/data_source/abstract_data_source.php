@@ -172,18 +172,17 @@ abstract class abstract_data_source implements data_source_interface, \templatab
         if ($this->get_layout()->supports_pagination()) {
             $perpage = (int) $this->get_preferences('perpage');
         }
-        $perpage = ($perpage) ? $perpage : \block_dash\local\paginator::PER_PAGE_DEFAULT;
+        $perpage = isset($perpage) && !empty($perpage) ? $perpage : \block_dash\local\paginator::PER_PAGE_DEFAULT;
 
-        
         if ($this->paginator == null) {
             $this->paginator = new paginator(function () {
-                $count = $this->get_query()->count();            
-                if ($maxlimit = $this->get_max_limit()) {                
+                $count = $this->get_query()->count();
+                if ($maxlimit = $this->get_max_limit()) {
                     return $maxlimit < $count ? $maxlimit : $count;
                 }
                 return $count;
             }, 0, $perpage);
-        }        
+        }
 
         return $this->paginator;
     }

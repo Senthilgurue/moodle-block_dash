@@ -102,7 +102,7 @@ body .select2-container {
     display: inline-block;
 }
 
-.dash-block-content .card img.img-responsive {
+.dash-block-content img.img-responsive {
     max-height: 120px;
     object-fit: cover;
 }

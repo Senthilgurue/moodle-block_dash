@@ -216,7 +216,7 @@ class external extends external_api {
 
         // If array contains only scalars, overwrite with new config. No more looping required for this level.
         if (is_array($existingconfig) && !self::is_array_multidimensional($existingconfig)) {
-            return $newconfig;
+            return array_merge($existingconfig, $newconfig);
         }
 
         // Recursively overwrite values.

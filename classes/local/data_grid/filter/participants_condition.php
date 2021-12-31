@@ -66,7 +66,6 @@ class participants_condition extends condition {
                         } else {
                             $groups = groups_get_all_groups($course->id, $USER->id);
                             if ($groupids = array_keys($groups)) {
-                                // print_r($groupids);exit;
                                 $users = array_merge($users, groups_get_groups_members($groupids));
                             }
                         }

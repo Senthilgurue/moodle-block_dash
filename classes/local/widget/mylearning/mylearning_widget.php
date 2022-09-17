@@ -30,6 +30,7 @@ use context_module;
 use context_course;
 use html_writer;
 use cm_info;
+use moodle_url;
 
 /**
  * Mylearning widget class contains the courses user enrolled and not completed.

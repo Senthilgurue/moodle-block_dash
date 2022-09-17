@@ -23,9 +23,6 @@
  */
 
 namespace block_dash\local\widget\groups;
-
-defined('MOODLE_INTERNAL') || die();
-
 use external_api;
 require_once($CFG->dirroot . '/user/selector/lib.php');
 require_once($CFG->dirroot . '/group/lib.php');

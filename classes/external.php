@@ -23,9 +23,6 @@
  */
 
 namespace block_dash;
-
-defined('MOODLE_INTERNAL') || die();
-
 require_once("$CFG->libdir/externallib.php");
 
 use block_dash\local\block_builder;

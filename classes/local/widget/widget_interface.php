@@ -23,9 +23,6 @@
  */
 
 namespace block_dash\local\widget;
-
-defined('MOODLE_INTERNAL') || die();
-
 /**
  * A widget contains information on how to display data.
  *

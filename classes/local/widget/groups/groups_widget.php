@@ -26,6 +26,7 @@ namespace block_dash\local\widget\groups;
 
 use block_dash\local\widget\abstract_widget;
 use context_block;
+use moodle_url;
 
 /**
  * Groups widget contains list of available contacts.

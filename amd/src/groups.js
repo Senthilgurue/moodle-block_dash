@@ -1,15 +1,16 @@
 
-define(['jquery', 'core/str', 'core/modal_factory', 'core/modal_events', 'core/fragment', 'core/templates', 'core/ajax'], function($, Str, Modal, ModalEvents, Fragment, Templates, AJAX) {
-    
+define(['jquery', 'core/str', 'core/modal_factory', 'core/modal_events', 'core/fragment', 'core/templates', 'core/ajax'],
+    function($, Str, Modal, ModalEvents, Fragment, Templates, AJAX) {
+
     return {
         init: function(contextID) {
-            
+
             var groupModal = document.getElementsByClassName('group-widget-viewmembers');
             Array.from(groupModal).forEach(function(element) {
                 element.addEventListener('click', function(e) {
                     e.preventDefault();
                     var target = e.target;
-                    group = target.getAttribute('data-group');
+                    var group = target.getAttribute('data-group');
                     Modal.create({
                         title: Str.get_string('groups', 'core')
                     }).then(function(modal) {
@@ -17,15 +18,15 @@ define(['jquery', 'core/str', 'core/modal_factory', 'core/modal_events', 'core/f
                         modal.getRoot().on(ModalEvents.shown, function() {
                             var args = JSON.stringify({group: group});
                             var params = {widget: 'groups', method: 'viewmembers', args: args};
-                            var form = Fragment.loadFragment('block_dash', 'loadwidget', contextID, params).then((html, js) => {
+                            Fragment.loadFragment('block_dash', 'loadwidget', contextID, params).then((html, js) => {
                                 modal.setBody(html);
                                 Templates.runTemplateJS(js);
                             });
-                        })
+                        });
                         modal.getRoot().on(ModalEvents.hidden, function() {
                             modal.destroy();
                         });
-                    })
+                    });
                 });
             });
 
@@ -34,7 +35,7 @@ define(['jquery', 'core/str', 'core/modal_factory', 'core/modal_events', 'core/f
                 element.addEventListener('click', function(e) {
                     e.preventDefault();
                     var target = e.target;
-                    group = target.getAttribute('data-group');
+                    var group = target.getAttribute('data-group');
                     Modal.create({
                         type: Modal.types.SAVE_CANCEL,
                         title: Str.get_string('widget:groups:adduser', 'block_dash'),
@@ -44,17 +45,17 @@ define(['jquery', 'core/str', 'core/modal_factory', 'core/modal_events', 'core/f
                         modal.getRoot().on(ModalEvents.shown, function() {
                             var args = JSON.stringify({group: group});
                             var params = {widget: 'groups', method: 'addmembers', args: args};
-                            var form = Fragment.loadFragment('block_dash', 'loadwidget', contextID, params).then((html, js) => {
+                            Fragment.loadFragment('block_dash', 'loadwidget', contextID, params).then((html, js) => {
                                 modal.setBody(html);
 
                                 modal.getRoot().get(0).querySelectorAll('form').forEach(form => {
                                     form.addEventListener('submit', function(e) {
                                         e.preventDefault();
-                                        formdata = new FormData(e.target);
+                                        var formdata = new FormData(e.target);
                                         if (e.target.querySelector('[name="users[]"]').value == '') {
                                             return false;
                                         }
-                                        console.log(e.target.querySelector('[name="users[]"]').value);
+
                                         var formdatastr = new URLSearchParams(formdata).toString();
                                         var promises = AJAX.call([{
                                             methodname: 'block_dash_groups_add_members',
@@ -73,7 +74,7 @@ define(['jquery', 'core/str', 'core/modal_factory', 'core/modal_events', 'core/f
 
                                 Templates.runTemplateJS(js);
                             });
-                        })
+                        });
 
                         modal.getRoot().on(ModalEvents.hidden, function() {
                             modal.destroy();
@@ -82,12 +83,11 @@ define(['jquery', 'core/str', 'core/modal_factory', 'core/modal_events', 'core/f
                         // Apply and save method.
                         modal.getRoot().on(ModalEvents.save, (e) => {
                             e.preventDefault();
-                            var formdata = {};
                             modal.getRoot().get(0).querySelectorAll('form').forEach(form => {
-                                var r = form.querySelector('#id_submitbutton').click();
+                                form.querySelector('#id_submitbutton').click();
                             });
                         });
-                    })
+                    });
                 });
             });
 
@@ -97,7 +97,7 @@ define(['jquery', 'core/str', 'core/modal_factory', 'core/modal_events', 'core/f
                 element.addEventListener('click', function(e) {
                     e.preventDefault();
                     var target = e.target;
-                    group = target.getAttribute('data-group');
+                    var group = target.getAttribute('data-group');
                     Modal.create({
                         type: Modal.types.SAVE_CANCEL,
                         title: Str.get_string('groups', 'core' ),
@@ -106,7 +106,7 @@ define(['jquery', 'core/str', 'core/modal_factory', 'core/modal_events', 'core/f
                         modal.getRoot().on(ModalEvents.shown, function() {
                             var args = JSON.stringify({group: group});
                             var params = {widget: 'groups', method: 'viewmembers', args: args};
-                            var form = Fragment.loadFragment('block_dash', 'loadwidget', contextID, params).then((html, js) => {
+                            Fragment.loadFragment('block_dash', 'loadwidget', contextID, params).then((html, js) => {
                                 modal.setBody(html);
                                 Templates.runTemplateJS(js);
                             });
@@ -130,7 +130,7 @@ define(['jquery', 'core/str', 'core/modal_factory', 'core/modal_events', 'core/f
                         modal.getRoot().on(ModalEvents.hidden, function() {
                             modal.destroy();
                         });
-                    })
+                    });
                 });
             });
 
@@ -140,7 +140,7 @@ define(['jquery', 'core/str', 'core/modal_factory', 'core/modal_events', 'core/f
                 element.addEventListener('click', function(e) {
                     e.preventDefault();
                     var target = e.target;
-                    group = target.getAttribute('data-group');
+                    var group = target.getAttribute('data-group');
                     Modal.create({
                         type: Modal.types.SAVE_CANCEL,
                         title: Str.get_string('groups', 'core'),
@@ -149,13 +149,13 @@ define(['jquery', 'core/str', 'core/modal_factory', 'core/modal_events', 'core/f
                         modal.getRoot().on(ModalEvents.shown, function() {
                             var args = "";
                             var params = {widget: 'groups', method: 'creategroup', args: args};
-                            var form = Fragment.loadFragment('block_dash', 'loadwidget', contextID, params).then((html, js) => {
+                            Fragment.loadFragment('block_dash', 'loadwidget', contextID, params).then((html, js) => {
                                 modal.setBody(html);
                                 Templates.runTemplateJS(js);
                                 modal.getRoot().get(0).querySelectorAll('form').forEach(form => {
                                     form.addEventListener('submit', function(e) {
                                         e.preventDefault();
-                                        formdata = new FormData(e.target);
+                                        var formdata = new FormData(e.target);
                                         if (e.target.querySelector('[name="name"]').value == "" || e.target.querySelector('[name="courseid"]').value == '') {
                                             return false;
                                         }
@@ -175,23 +175,22 @@ define(['jquery', 'core/str', 'core/modal_factory', 'core/modal_events', 'core/f
                                     });
                                 });
                             });
-                        })
+                        });
 
                         // Apply and save method.
                         modal.getRoot().on(ModalEvents.save, (e) => {
                             e.preventDefault();
-                            var formdata = {};
                             modal.getRoot().get(0).querySelectorAll('form').forEach(form => {
-                                var r = form.querySelector('#id_submitbutton').click();
+                                form.querySelector('#id_submitbutton').click();
                             });
                         });
 
                         modal.getRoot().on(ModalEvents.hidden, function() {
                             modal.destroy();
                         });
-                    })
+                    });
                 });
             });
         }
-    }
-})
+    };
+});

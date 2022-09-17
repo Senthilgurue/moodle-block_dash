@@ -59,6 +59,7 @@ function block_dash_register_data_sources() {
     return [
         [
             'name' => get_string('users'),
+            'help' => ['name' => 'users', 'component' => 'block_dash'],
             'identifier' => users_data_source::class
         ],
     ];
@@ -91,14 +92,17 @@ function block_dash_register_widget() {
         [
             'name' => get_string('widget:mylearning', 'block_dash'),
             'identifier' => mylearning_widget::class,
+            'help' => 'widget:mylearning',
         ],
         [
             'name' => get_string('widget:mycontacts', 'block_dash'),
             'identifier' => contacts_widget::class,
+            'help' => 'widget:mycontacts',
         ],
         [
             'name' => get_string('widget:mygroups', 'block_dash'),
             'identifier' => groups_widget::class,
+            'help' => 'widget:mygroups',
         ]
     ];
 }

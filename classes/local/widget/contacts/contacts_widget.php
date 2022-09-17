@@ -26,6 +26,7 @@ namespace block_dash\local\widget\contacts;
 
 use block_dash\local\widget\abstract_widget;
 use context_block;
+use moodle_url;
 
 /**
  * Contacts widget contains list of available contacts.

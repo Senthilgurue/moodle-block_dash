@@ -23,9 +23,6 @@
  */
 
 namespace block_dash\table;
-
-defined('MOODLE_INTERNAL') || die();
-
 use core_table\dynamic as dynamic_table;
 use html_writer;
 

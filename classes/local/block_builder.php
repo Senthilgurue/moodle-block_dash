@@ -28,9 +28,6 @@ use block_dash\local\configuration\configuration_interface;
 use block_dash\local\configuration\configuration;
 use block_dash\output\query_debug;
 use block_dash\output\renderer;
-
-defined('MOODLE_INTERNAL') || die();
-
 /**
  * Helper class for creating block instance content.
  *

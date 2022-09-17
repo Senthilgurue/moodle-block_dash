@@ -28,9 +28,6 @@ use block_dash\local\data_source\abstract_data_source;
 use block_dash\local\data_source\data_source_interface;
 
 use Mustache_Engine;
-
-defined('MOODLE_INTERNAL') || die();
-
 /**
  * Class renderer.
  *

@@ -33,9 +33,6 @@ use block_dash\local\data_grid\field\attribute\identifier_attribute;
 use block_dash\local\paginator;
 use block_dash\local\data_source\data_source_interface;
 use block_dash\local\data_source\form\preferences_form;
-
-defined('MOODLE_INTERNAL') || die();
-
 /**
  * Extend this class when creating new layouts.
  *

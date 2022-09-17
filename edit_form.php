@@ -24,8 +24,6 @@
 
 use block_dash\local\data_source\data_source_factory;
 
-defined('MOODLE_INTERNAL') || die();
-
 /**
  * Form for editing Dash block instances.
  *
@@ -113,6 +111,7 @@ class block_dash_edit_form extends block_edit_form {
      * @return void
      */
     public function add_datasource_group(&$mform, $config) {
+        global $OUTPUT;
 
         $label[] = $mform->createElement('html', html_writer::start_div('datasource-content heading'));
         $label[] = $mform->createElement('html', html_writer::end_div());
@@ -124,21 +123,34 @@ class block_dash_edit_form extends block_edit_form {
             $datasources = data_source_factory::get_data_source_form_options();
             $group[] = $mform->createElement('html', html_writer::start_div('datasource-content'));
             foreach ($datasources as $id => $source) {
-                $group[] = $mform->createElement('radio', 'config_data_source_idnumber', '', $source, $id);
+                $group[] = $mform->createElement('html', html_writer::start_div('datasource-item'));
+                $group[] = $mform->createElement('radio', 'config_data_source_idnumber', '', $source['name'], $id);
+                if ($help = $source['help']) {
+                    $helpcontent = $OUTPUT->help_icon($help['name'], $help['component'], $help['name']);
+                    $group[] = $mform->createElement('html', $helpcontent);
+                }
+                $group[] = $mform->createElement('html', html_writer::end_div());
             }
             $group[] = $mform->createElement('html', html_writer::end_div());
-            $mform->addGroup($group, 'datasources', get_string('datasources', 'block_dash'), array(' '), false);
+            $mform->addGroup($group, 'datasources', get_string('buildown', 'block_dash'), array(' '), false);
             $mform->setType('datasources', PARAM_TEXT);
+            $mform->addHelpButton('datasources', 'buildown', 'block_dash');
 
             // Widgets data source.
             $widgetlist = data_source_factory::get_data_source_form_options('widget');
             $widgets[] = $mform->createElement('html', html_writer::start_div('datasource-content'));
             foreach ($widgetlist as $id => $source) {
-                $widgets[] = $mform->createElement('radio', 'config_data_source_idnumber', '', $source, $id);
+                $widgets[] = $mform->createElement('html', html_writer::start_div('datasource-item'));
+                $widgets[] = $mform->createElement('radio', 'config_data_source_idnumber', '', $source['name'], $id);
+                if ($source['help']) {
+                    $widgets[] = $mform->createElement('html', $OUTPUT->help_icon($source['help'], 'block_dash', $source['help']));
+                }
+                $widgets[] = $mform->createElement('html', html_writer::end_div());
             }
             $widgets[] = $mform->createElement('html', html_writer::end_div());
-            $mform->addGroup($widgets, 'widgets', 'widgets', array(' '), false);
+            $mform->addGroup($widgets, 'widgets', get_string('readymatewidgets', 'block_dash'), array(' '), false);
             $mform->setType('widgets', PARAM_TEXT);
+            $mform->addHelpButton('widgets', 'readymatewidgets', 'block_dash');
 
         } else {
             if ($ds = data_source_factory::build_data_source($config->data_source_idnumber,
@@ -150,7 +162,7 @@ class block_dash_edit_form extends block_edit_form {
             $datalabel = (method_exists($ds, 'is_widget')
             ? get_string('widget', 'block_dash') : get_string('datasource', 'block_dash'));
 
-            $mform->addElement('static', 'data_source_label', $datalabel, $label);
+            $mform->addElement('static', 'data_source_label', $datalabel.' : '.$label);
         }
     }
 }

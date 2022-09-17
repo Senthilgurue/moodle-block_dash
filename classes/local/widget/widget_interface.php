@@ -23,12 +23,13 @@
  */
 
 namespace block_dash\local\widget;
+
 /**
  * A widget contains information on how to display data.
  *
  * @package block_dash
  */
-interface widget_interface  {
+interface widget_interface {
 
     /**
      * Confirm the loaded data source is widget.

@@ -77,7 +77,9 @@ class data_source_factory implements data_source_factory_interface {
         }
 
         return self::$datasourceregistry;
-    }    /**
+    }
+
+    /**
      * Check if data source identifier exists.
      *
      * @param string $identifier

@@ -118,8 +118,8 @@ class filter_test extends \advanced_testcase {
         $this->assertTrue($this->filtercollection->apply_filter('filter1', 123));
 
         list($sql, $params) = $this->filtercollection->get_sql_and_params();
-        $this->assertEquals('table.fieldname = :param6', $sql[0], 'Ensure SQL is generated.');
-        $this->assertEquals($params, ['param6' => 123], 'Ensure params are returned.');
+        $this->assertEquals('table.fieldname = :param1', $sql[0], 'Ensure SQL is generated.');
+        $this->assertEquals($params, ['param1' => 123], 'Ensure params are returned.');
     }
     /**
      * Test for required_filters() to ensure that the fields are correctly loaded for attributes.

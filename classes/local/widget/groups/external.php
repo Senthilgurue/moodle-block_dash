@@ -23,7 +23,11 @@
  */
 
 namespace block_dash\local\widget\groups;
+
 use external_api;
+
+defined('MOODLE_INTERNAL') || die('No direct access');
+
 require_once($CFG->dirroot . '/user/selector/lib.php');
 require_once($CFG->dirroot . '/group/lib.php');
 

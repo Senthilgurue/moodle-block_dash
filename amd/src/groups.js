@@ -110,7 +110,7 @@ define(['jquery', 'core/str', 'core/modal_factory', 'core/modal_events', 'core/f
                                 modal.setBody(html);
                                 Templates.runTemplateJS(js);
                             });
-                        })
+                        });
                         modal.getRoot().on(ModalEvents.save, (e) => {
                             e.preventDefault();
                             var promises = AJAX.call([{
@@ -139,8 +139,6 @@ define(['jquery', 'core/str', 'core/modal_factory', 'core/modal_events', 'core/f
             Array.from(createGroupModal).forEach(function(element) {
                 element.addEventListener('click', function(e) {
                     e.preventDefault();
-                    var target = e.target;
-                    var group = target.getAttribute('data-group');
                     Modal.create({
                         type: Modal.types.SAVE_CANCEL,
                         title: Str.get_string('groups', 'core'),
@@ -156,7 +154,8 @@ define(['jquery', 'core/str', 'core/modal_factory', 'core/modal_events', 'core/f
                                     form.addEventListener('submit', function(e) {
                                         e.preventDefault();
                                         var formdata = new FormData(e.target);
-                                        if (e.target.querySelector('[name="name"]').value == "" || e.target.querySelector('[name="courseid"]').value == '') {
+                                        if (e.target.querySelector('[name="name"]').value == ""
+                                            || e.target.querySelector('[name="courseid"]').value == '') {
                                             return false;
                                         }
                                         var formdatastr = new URLSearchParams(formdata).toString();

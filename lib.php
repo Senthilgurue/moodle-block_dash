@@ -32,8 +32,6 @@ use block_dash\local\widget\mylearning\mylearning_widget;
 use block_dash\local\widget\groups\groups_widget;
 use block_dash\local\widget\contacts\contacts_widget;
 
-defined('MOODLE_INTERNAL') || die();
-
 /**
  * Register field definitions.
  *
@@ -186,7 +184,7 @@ function block_dash_pluginfile($course, $cm, $context, $filearea, $args, $forced
         $fullpath = "/$context->id/block_dash/$filearea/$relativepath";
 
         $fs = get_file_storage();
-        if (!$file = $fs->get_file_by_hash(sha1($fullpath)) or $file->is_directory()) {
+        if (!$file = $fs->get_file_by_hash(sha1($fullpath)) || $file->is_directory()) {
             return false;
         }
 

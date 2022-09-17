@@ -118,10 +118,6 @@ abstract class abstract_data_source implements data_source_interface, \templatab
         return self::get_name_from_class(get_class($this));
     }
 
-    public function get_help() {
-        return self::get_name_from_class(get_class($this), true);
-    }
-
     /**
      * Get human readable name of data source.
      *

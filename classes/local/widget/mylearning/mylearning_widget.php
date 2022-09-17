@@ -351,8 +351,8 @@ class mylearning_widget extends abstract_widget {
         // Create return value.
         $coursecontents = array();
 
-        if ($canupdatecourse or $course->visible
-                or has_capability('moodle/course:viewhiddencourses', $context)) {
+        if ($canupdatecourse || $course->visible
+                || has_capability('moodle/course:viewhiddencourses', $context)) {
 
             $modinfo = get_fast_modinfo($course);
             $sections = $modinfo->get_section_info_all();
@@ -433,7 +433,7 @@ class mylearning_widget extends abstract_widget {
                             $sectionactivitycount += 1;
                         }
 
-                        if (!empty($cm->showdescription) or $module['noviewlink']) {
+                        if (!empty($cm->showdescription) || $module['noviewlink']) {
                             // We want to use the external format. However from reading get_formatted_content(), $cm->content
                             // Format is always FORMAT_HTML.
                             $options = array('noclean' => true);

@@ -25,12 +25,15 @@
 namespace block_dash\local\data_grid\field\attribute;
 
 use dml_exception;
+
 /**
  * Transform data by renaming delimited IDs to fields. Such as course name or group name.
  *
  * @package block_dash
  */
-class rename_ids_attribute extends abstract_field_attribute {    /** @var array stored the fields used in current table.*/
+class rename_ids_attribute extends abstract_field_attribute {
+
+    /** @var array stored the fields used in current table.*/
     private static $fieldstore = [];
 
     /**

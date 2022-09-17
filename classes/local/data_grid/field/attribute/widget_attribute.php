@@ -15,7 +15,7 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * Transforms data to image element.
+ * Transform data to user's profile image URL.
  *
  * @package    block_dash
  * @copyright  2019 bdecent gmbh <https://bdecent.de>
@@ -27,26 +27,29 @@ namespace block_dash\local\data_grid\field\attribute;
 defined('MOODLE_INTERNAL') || die();
 
 /**
- * Transforms data to image element.
+ * Transform data to user's profile image URL.
  *
  * @package block_dash
  */
-class image_attribute extends abstract_field_attribute {
+class widget_attribute extends abstract_field_attribute {
 
     /**
      * After records are relieved from database each field has a chance to transform the data.
-     * Example: Convert unix timestamp into a human readable date format
+     * Example: Convert unix timestamp into a human readable date fsormat
      *
-     * @param mixed $data Raw data associated with this field definition.
-     * @param \stdClass $record Full record from database.
+     * @param mixed $data
+     * @param \stdClass $record Entire row
      * @return mixed
+     * @throws \moodle_exception
      */
     public function transform_data($data, \stdClass $record) {
-        if ($data) {
-            return \html_writer::img($data, $this->get_option('title'), [
-                'class' => 'img-responsive',
-                'role' => 'presentation '
-            ]);
+        global $PAGE, $DB;
+        $widget = $this->get_option('widget');
+        $method = $this->get_option('method');
+        if ($widget && $method) {
+            if (method_exists($widget, $method)) {
+                $data = $widget->$method($record);
+            }
         }
 
         return $data;

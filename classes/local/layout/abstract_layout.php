@@ -237,7 +237,6 @@ abstract class abstract_layout implements layout_interface, \templatable {
             'bootstrap3' => get_config('block_dash', 'bootstrap_version') == 3,
             'bootstrap4' => get_config('block_dash', 'bootstrap_version') == 4
         ];
-
         if (!empty($this->get_data_source()->get_all_preferences())) {
             try {
                 $templatedata['data'] = $this->get_data_source()->get_data();
@@ -280,6 +279,7 @@ abstract class abstract_layout implements layout_interface, \templatable {
      */
     protected function map_data($mapping, data_collection_interface $datacollection) {
         foreach ($mapping as $newname => $fieldname) {
+
             if ($fieldname) {
                 $datacollection->add_data(new field($newname, $datacollection[$fieldname], true));
             }

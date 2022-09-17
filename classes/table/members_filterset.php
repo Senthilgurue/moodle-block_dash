@@ -15,40 +15,53 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * Transforms data to image element.
+ * Group memebers table filterset.
  *
  * @package    block_dash
  * @copyright  2019 bdecent gmbh <https://bdecent.de>
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
-namespace block_dash\local\data_grid\field\attribute;
+declare(strict_types=1);
 
-defined('MOODLE_INTERNAL') || die();
+namespace block_dash\table;
+
+use core_table\local\filter\filterset;
+use core_table\local\filter\integer_filter;
 
 /**
- * Transforms data to image element.
- *
- * @package block_dash
+ * Group memebers table filterset.
  */
-class image_attribute extends abstract_field_attribute {
+class members_filterset extends filterset {
 
     /**
-     * After records are relieved from database each field has a chance to transform the data.
-     * Example: Convert unix timestamp into a human readable date format
+     * Get the required filters.
      *
-     * @param mixed $data Raw data associated with this field definition.
-     * @param \stdClass $record Full record from database.
-     * @return mixed
+     * The only required filter is the courseid filter.
+     *
+     * @return array.
      */
-    public function transform_data($data, \stdClass $record) {
-        if ($data) {
-            return \html_writer::img($data, $this->get_option('title'), [
-                'class' => 'img-responsive',
-                'role' => 'presentation '
-            ]);
-        }
+    public function get_required_filters(): array {
+        return [];
+    }
 
-        return $data;
+    /**
+     * Get the optional filters.
+     *
+     * These are:
+     * - accesssince;
+     * - enrolments;
+     * - groups;
+     * - keywords;
+     * - country;
+     * - roles; and
+     * - status.
+     *
+     * @return array
+     */
+    public function get_optional_filters(): array {
+        return [
+            'group' => integer_filter::class,
+        ];
     }
 }

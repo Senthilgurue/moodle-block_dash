@@ -66,10 +66,21 @@ class data_source_factory implements data_source_factory_interface {
                     ];
                 }
             }
+
+            if ($pluginsfunction = get_plugins_with_function('register_widget')) {
+                foreach ($pluginsfunction as $plugintype => $plugins) {
+                    foreach ($plugins as $pluginfunction) {
+                        foreach ($pluginfunction() as $callback) {
+                            self::$datasourceregistry[$callback['identifier']] = $callback + ['type' => 'widget'];
+                        }
+                    }
+                }
+            }
         }
 
         return self::$datasourceregistry;
     }
+
 
     /**
      * Check if data source identifier exists.
@@ -123,15 +134,25 @@ class data_source_factory implements data_source_factory_interface {
     /**
      * Get options array for select form fields.
      *
+     * @param string $type
      * @return array
      */
-    public static function get_data_source_form_options() {
+    public static function get_data_source_form_options($type='') {
         $options = [];
 
         foreach (self::get_data_source_registry() as $identifier => $datasourceinfo) {
-            $options[$identifier] = $datasourceinfo['name'];
+            if ($type) {
+                if (isset($datasourceinfo['type']) && $datasourceinfo['type'] == $type) {
+                    $options[$identifier] = $datasourceinfo['name'];
+                }
+            } else {
+                if (!isset($datasourceinfo['type'])) {
+                    $options[$identifier] = $datasourceinfo['name'];
+                }
+            }
         }
 
         return $options;
     }
+
 }

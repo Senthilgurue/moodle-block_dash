@@ -71,9 +71,7 @@ class choice_filter extends select_filter {
      */
     public function init() {
         $this->add_all_option();
-
         $this->add_options($this->choices);
-
         parent::init();
     }
 }

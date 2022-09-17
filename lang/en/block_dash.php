@@ -267,9 +267,10 @@ $string['userstat'] = 'User stat';
 $string['viewcourse'] = 'View course';
 $string['viewprofile'] = 'View profile';
 $string['withroles'] = 'With role(s)';
-
-// Course default image settings - pro - LMSACE.
-// TODO: LMSACE.
+$string['headerfooter'] = 'Header & Footer';
+$string['choosefeature'] = 'Choose Feature';
+$string['datasources'] = 'Datasources';
+// Course default image settings.
 $string['generalsettings'] = 'General settings';
 $string['courseimage'] = 'Course default image';
 $string['courseimagedesc'] = 'Upload placeholder image to display as course image for empty course image.';
@@ -281,3 +282,32 @@ $string['courseredirecturl'] = 'Course redirect URL';
 $string['courseredirecturldesc'] = 'Enter the URL to redirect the users from course index page.';
 $string['courseimagelink'] = 'Course image link';
 $string['backgroundimagefield'] = 'Background image';
+// 1.3
+$string['status:completed'] = 'Completed';
+$string['status:inprogress'] = 'In Progress';
+$string['status:enrolled'] = 'Enrolled';
+$string['widget:mycontacts'] = 'My Contacts';
+$string['widget:groups:groupmembers'] = 'View Members';
+$string['widget:groups:adduser'] = 'Add user';
+$string['widget:groups:chat'] = 'Chat';
+$string['widget:groups:leavegroup'] = 'Leave Group';
+$string['widget:groups:creategroup'] = 'Create Group';
+$string['widget'] = 'Widget';
+$string['widget:mylearning'] = 'My learning';
+$string['widget:mygroups'] = 'My groups';
+$string['customfields'] = 'Custom fields';
+$string['contacts'] = 'Contacts';
+$string['badges'] = 'Badges';
+$string['coursecontent'] = 'Course content';
+$string['category'] = 'Category name';
+$string['badgestitle'] = 'Badges';
+$string['coursestafftitle'] = 'Course staff';
+$string['secondarynav'] = 'Add to course navigation';
+$string['dash:mygroups_addusers'] = 'Add users into groups';
+$string['dash:mygroups_creategroup'] = 'Create groups in enrolled courses';
+$string['dash:mygroups_leavegroup'] = 'Leave from groups';
+$string['dash:mygroups_viewmembers'] = 'View members in assigned groups';
+$string['nogroupsavailable'] = 'No groups available';
+$string['nocontactsavailable'] = 'No contacts available';
+$string['openmodule'] = 'Open module';
+$string['dash:mygroups_view'] = 'View my own groups';

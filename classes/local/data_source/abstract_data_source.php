@@ -679,4 +679,14 @@ abstract class abstract_data_source implements data_source_interface, \templatab
     public function get_block_instance() {
         return $this->blockinstance;
     }
+
+    /**
+     * Set the data source supports debug.
+     *
+     * @return bool;
+     */
+    public function supports_debug() {
+        return true;
+    }
+
 }

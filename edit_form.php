@@ -43,10 +43,24 @@ class block_dash_edit_form extends block_edit_form {
      */
     protected function specific_definition($mform) {
         // Fields for editing HTML block title and contents.
-        $mform->addElement('header', 'configheader', get_string('blocksettings', 'block'));
+        $mform->addElement('header', 'dashconfigheader', get_string('blocksettings', 'block'));
 
         $mform->addElement('text', 'config_title', get_string('blocktitle', 'block_dash'));
         $mform->setType('config_title', PARAM_TEXT);
+
+        $this->add_datasource_group($mform, $this->block->config);
+
+        $mform->addElement('header', 'headerfooter', get_string('headerfooter', 'block_dash'));
+
+        $mform->addElement('editor', 'config_header_content', get_string('headercontent', 'block_dash'));
+        $mform->setType('config_header_content', PARAM_RAW);
+        $mform->addHelpButton('config_header_content', 'headercontent', 'block_dash');
+
+        $mform->addElement('editor', 'config_footer_content', get_string('footercontent', 'block_dash'));
+        $mform->setType('config_footer_content', PARAM_RAW);
+        $mform->addHelpButton('config_footer_content', 'footercontent', 'block_dash');
+
+        $mform->addElement('header', 'apperance', get_string('appearance'));
 
         $mform->addElement('select', 'config_width', get_string('blockwidth', 'block_dash'), [
             100 => '100',
@@ -69,33 +83,6 @@ class block_dash_edit_form extends block_edit_form {
         $mform->addElement('text', 'config_css_class', get_string('cssclass', 'block_dash'));
         $mform->setType('config_css_class', PARAM_TEXT);
 
-        if (!isset($this->block->config->data_source_idnumber)) {
-            $mform->addElement('select', 'config_data_source_idnumber', get_string('choosedatasource', 'block_dash'),
-                data_source_factory::get_data_source_form_options());
-            $mform->setType('config_data_source_idnumber', PARAM_TEXT);
-            $mform->addRule('config_data_source_idnumber', get_string('required'), 'required');
-        } else {
-            if ($ds = data_source_factory::build_data_source($this->block->config->data_source_idnumber,
-                $this->block->context)) {
-                $label = $ds->get_name();
-            } else {
-                $label = get_string('datasourcemissing', 'block_dash');
-            }
-            $mform->addElement('static', 'data_source_label', get_string('datasource', 'block_dash'), $label);
-        }
-
-        $mform->addElement('header', 'extracontent', get_string('extracontent', 'block_dash'));
-
-        $mform->addElement('editor', 'config_header_content', get_string('headercontent', 'block_dash'));
-        $mform->setType('config_header_content', PARAM_RAW);
-        $mform->addHelpButton('config_header_content', 'headercontent', 'block_dash');
-
-        $mform->addElement('editor', 'config_footer_content', get_string('footercontent', 'block_dash'));
-        $mform->setType('config_footer_content', PARAM_RAW);
-        $mform->addHelpButton('config_footer_content', 'footercontent', 'block_dash');
-
-        $mform->addElement('header', 'apperance', get_string('appearance'));
-
         $mform->addElement('filemanager', 'config_backgroundimage', get_string('backgroundimage', 'block_dash'), null,
             ['subdirs' => 0, 'maxfiles' => 1, 'accepted_types' => ['image'], 'return_types' => FILE_INTERNAL | FILE_EXTERNAL]);
         $mform->addHelpButton('config_backgroundimage', 'backgroundimage', 'block_dash');
@@ -117,4 +104,54 @@ class block_dash_edit_form extends block_edit_form {
         $mform->setType('config_css[min-height]', PARAM_TEXT);
         $mform->addHelpButton('config_css[min-height]', 'minheight', 'block_dash');
     }
+
+    /**
+     * Add available data source groups.
+     *
+     * @param moodleform $mform
+     * @param stdclass $config
+     * @return void
+     */
+    public function add_datasource_group(&$mform, $config) {
+
+        $label[] = $mform->createElement('html', html_writer::start_div('datasource-content heading'));
+        $label[] = $mform->createElement('html', html_writer::end_div());
+        $mform->addGroup($label, 'datasources_label', get_string('choosefeature', 'block_dash'), array(' '), false);
+        $mform->setType('datasources_label', PARAM_TEXT);
+
+        if (!isset($config->data_source_idnumber)) {
+            // Group of datasources.
+            $datasources = data_source_factory::get_data_source_form_options();
+            $group[] = $mform->createElement('html', html_writer::start_div('datasource-content'));
+            foreach ($datasources as $id => $source) {
+                $group[] = $mform->createElement('radio', 'config_data_source_idnumber', '', $source, $id);
+            }
+            $group[] = $mform->createElement('html', html_writer::end_div());
+            $mform->addGroup($group, 'datasources', get_string('datasources', 'block_dash'), array(' '), false);
+            $mform->setType('datasources', PARAM_TEXT);
+
+            // Widgets data source.
+            $widgetlist = data_source_factory::get_data_source_form_options('widget');
+            $widgets[] = $mform->createElement('html', html_writer::start_div('datasource-content'));
+            foreach ($widgetlist as $id => $source) {
+                $widgets[] = $mform->createElement('radio', 'config_data_source_idnumber', '', $source, $id);
+            }
+            $widgets[] = $mform->createElement('html', html_writer::end_div());
+            $mform->addGroup($widgets, 'widgets', 'widgets', array(' '), false);
+            $mform->setType('widgets', PARAM_TEXT);
+
+        } else {
+            if ($ds = data_source_factory::build_data_source($config->data_source_idnumber,
+                $this->block->context)) {
+                $label = $ds->get_name();
+            } else {
+                $label = get_string('datasourcemissing', 'block_dash');
+            }
+            $datalabel = (method_exists($ds, 'is_widget')
+            ? get_string('widget', 'block_dash') : get_string('datasource', 'block_dash'));
+
+            $mform->addElement('static', 'data_source_label', $datalabel, $label);
+        }
+    }
 }
+

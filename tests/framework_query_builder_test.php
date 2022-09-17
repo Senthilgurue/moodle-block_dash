@@ -41,6 +41,7 @@ class framework_query_builder_test extends \advanced_testcase {
     /**
      * Test for where() to ensure that the where conditions are correctly applied.
      *
+     * @covers ::where
      * @return void
      */
     public function test_where() {
@@ -93,6 +94,7 @@ class framework_query_builder_test extends \advanced_testcase {
     /**
      * Test for where_in_query() to ensure that the where query.
      *
+     * @covers ::where_in_query
      * @return void
      */
     public function test_where_in_query() {
@@ -135,6 +137,7 @@ class framework_query_builder_test extends \advanced_testcase {
     /**
      * Test for limits() to ensure that the dtatatables limits function.
      *
+     * @covers ::limits
      * @return void
      */
     public function test_limits() {
@@ -162,6 +165,7 @@ class framework_query_builder_test extends \advanced_testcase {
     /**
      * Test for orderby() to confirm the order by of datasource works.
      *
+     * @covers ::orderby
      * @return void
      */
     public function test_orderby() {
@@ -194,6 +198,7 @@ class framework_query_builder_test extends \advanced_testcase {
     /**
      * Test for joins() to ensure that the table joins works.
      *
+     * @covers ::joins
      * @return void
      */
     public function test_joins() {

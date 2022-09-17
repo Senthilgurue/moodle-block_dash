@@ -68,6 +68,7 @@ class filter_test extends \advanced_testcase {
     /**
      * Test for general_stuff() to ensure that the basic data testing are working.
      *
+     * @covers ::general_stuff
      * @return void
      */
     public function test_general_stuff() {
@@ -80,6 +81,7 @@ class filter_test extends \advanced_testcase {
     /**
      * Test for remove_filter() to ensure that the removing filters works fine.
      *
+     * @covers ::remove_filter
      * @return void
      */
     public function test_remove_filter() {
@@ -94,6 +96,7 @@ class filter_test extends \advanced_testcase {
     /**
      * Test for applying_filter() to ensure that the filters are working properely.
      *
+     * @covers ::applying_filter
      * @return void
      */
     public function test_applying_filter() {
@@ -112,6 +115,7 @@ class filter_test extends \advanced_testcase {
     /**
      * Test for filter_sql_and_params_collection() to ensure that the filter returns the sql and params collections.
      *
+     * @covers ::filter_sql_and_params_collection
      * @return void
      */
     public function test_filter_sql_and_params_collection() {
@@ -124,6 +128,7 @@ class filter_test extends \advanced_testcase {
     /**
      * Test for required_filters() to ensure that the fields are correctly loaded for attributes.
      *
+     * @covers ::required_filters
      * @return void
      */
     public function test_required_filters() {
@@ -141,6 +146,7 @@ class filter_test extends \advanced_testcase {
     /**
      * Test for caching() to confirm the filter data are cached.
      *
+     * @covers ::caching
      * @return void
      */
     public function test_caching() {

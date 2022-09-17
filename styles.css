@@ -602,6 +602,9 @@ h5:before,
 }
 
 @media (min-width: 1400px) {
+    .block_dash-info-element .course-info-block .left-block .course-staff-block ul li {
+        width: 24%;
+    }
     .block_dash-info-element .course-info-block .left-block .img-block {
         max-width: 400px;
         width: 100%;
@@ -683,7 +686,8 @@ h5:before,
     flex: auto;
 }
 #page-wrapper #page #page-content .mform #id_dashconfigheader .fcontainer .form-inline fieldset .form-check-label {
-    display: block;
+    display: inline-block;
+    margin: 0;
 }
 
 /*Blocks settings CSS*/

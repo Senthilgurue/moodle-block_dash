@@ -103,7 +103,7 @@ function($, Str, Modal, ModalEvents, Fragment, Templates, AJAX) {
                     }).then(function(modal) {
                         Str.get_string('confirm', 'core').then((html) => {
                             modal.setSaveButtonText(html);
-                        })
+                        });
                         modal.show();
 
                         Str.get_string('confirmleavegroup', 'block_dash', groupname).then((html) => {

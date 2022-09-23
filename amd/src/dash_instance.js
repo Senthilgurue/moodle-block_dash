@@ -169,7 +169,7 @@ define(['jquery', 'jqueryui', 'core/log', 'core/ajax', 'core/notification', 'cor
             $('body').delegate('[data-table-dynamic="true"] thead th a', 'click', function(e) {
                 e.preventDefault();
                 updateTable($(this));
-            })
+            });
 
             $('body').delegate('.modal-body .paging a', 'click', function(e) {
                 e.preventDefault();
@@ -187,7 +187,7 @@ define(['jquery', 'jqueryui', 'core/log', 'core/ajax', 'core/notification', 'cor
                     sortfield = table.data('table-sort');
                 }
 
-                tablehandler = table.data('table-handler');
+                var tablehandler = table.data('table-handler');
                 var filter = table.data('table-filter');
                 var uniqueid = table.data('table-uniqueid');
                 var context = table.data('table-context');
@@ -203,9 +203,9 @@ define(['jquery', 'jqueryui', 'core/log', 'core/ajax', 'core/notification', 'cor
                 Fragment.loadFragment('block_dash', 'loadtable', context, data).then((html, js) => {
                     $('.modal-body').html(html);
                     Templates.runTemplateJS(js);
-                })
-            }
-        }
+                });
+            };
+        };
 
         return DashInstance;
     });

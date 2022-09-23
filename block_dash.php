@@ -141,7 +141,8 @@ class block_dash extends block_base {
             $datasource = $bb->get_configuration()->get_data_source();
             // Conditionally hide the block when empty.
             if (isset($this->config->hide_when_empty) && $this->config->hide_when_empty
-                && (($datasource->is_widget() && $datasource->is_empty()) || (!$datasource->is_widget() && $datasource->get_data()->is_empty())) 
+                && (($datasource->is_widget() && $datasource->is_empty())
+                || (!$datasource->is_widget() && $datasource->get_data()->is_empty()))
                 && !$this->page->user_is_editing()) {
                 return $this->content;
             }
@@ -157,7 +158,6 @@ class block_dash extends block_base {
 
         $this->page->requires->css(new \moodle_url('/blocks/dash/styles/select2.min.css'));
         $this->page->requires->css(new \moodle_url('/blocks/dash/styles/datepicker.css'));
-        
 
         return $this->content;
     }

@@ -115,9 +115,9 @@ body .select2-container {
 }
 
 /* Widget css - groups */
-/*Groups block*/
+/* Groups block */
 .block_dash.block .block-header .block-title {
-        padding-right: 40px;
+    padding-right: 40px;
 }
 .block_dash.block .block-content .edit-block .dropdown .dropdown-menu {
     padding: 0;

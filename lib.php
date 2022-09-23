@@ -276,6 +276,12 @@ function block_dash_output_fragment_loadwidget($args) {
     return null;
 }
 
+/**
+ * Load the table pagination via ajax. withou page refresh.
+ *
+ * @param stdclass $args
+ * @return string
+ */
 function block_dash_output_fragment_loadtable($args) {
     global $DB;
 

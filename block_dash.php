@@ -110,6 +110,16 @@ class block_dash extends block_base {
     public function get_content() {
         global $OUTPUT;
 
+        // Prevent the jqueryui conflict with bootstrap tooltip.
+        if (class_exists('\core\navigation\views\secondary')) {
+            $this->page->requires->js_init_code(
+                'require(["jquery", "jqueryui"], function($, ui) {
+                    $.widget.bridge("uibutton", $.ui.button);
+                    $.widget.bridge("uitooltip", $.ui.tooltip);
+                });'
+            );
+        }
+
         if ($this->content !== null) {
             return $this->content;
         }
@@ -147,6 +157,7 @@ class block_dash extends block_base {
 
         $this->page->requires->css(new \moodle_url('/blocks/dash/styles/select2.min.css'));
         $this->page->requires->css(new \moodle_url('/blocks/dash/styles/datepicker.css'));
+        
 
         return $this->content;
     }

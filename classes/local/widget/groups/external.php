@@ -41,7 +41,7 @@ class external extends external_api {
      *
      * @return \external_function_parameters
      */
-    public function get_non_members_parameters() {
+    public static function get_non_members_parameters() {
 
         return new \external_function_parameters([
             'query' => new \external_value(PARAM_RAW,
@@ -158,7 +158,7 @@ class external extends external_api {
      *
      * @return \external_function_parameters
      */
-    public function leave_group_parameters() {
+    public static function leave_group_parameters() {
         return new \external_function_parameters([
             'groupid' => new \external_value(PARAM_INT, 'group id (0 if none)'),
         ]);
@@ -169,7 +169,7 @@ class external extends external_api {
      *
      * @return \external_value
      */
-    public function leave_group_returns() {
+    public static function leave_group_returns() {
         return new \external_value(PARAM_BOOL, 'Result of members added.');
     }
 
@@ -198,7 +198,7 @@ class external extends external_api {
      *
      * @return \external_function_parameters
      */
-    public function create_group_parameters() {
+    public static function create_group_parameters() {
         return new \external_function_parameters([
             'formdata' => new \external_value(PARAM_RAW, 'The data from the user notes'),
         ]);
@@ -209,7 +209,7 @@ class external extends external_api {
      *
      * @return void
      */
-    public function create_group_returns() {
+    public static function create_group_returns() {
         return new \external_value(PARAM_BOOL, 'Result of members added.');
     }
 

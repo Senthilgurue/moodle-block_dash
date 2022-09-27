@@ -102,7 +102,6 @@ class mylearning_widget extends abstract_widget {
         $courses = enrol_get_my_courses($basefields, null, 0, [], false, 0, $completedcourses);
 
         array_walk($courses, function($course) {
-
             $category = (class_exists('\core_course_category'))
             ? \core_course_category::get($course->category) : \coursecat::get($course->category);
             $course->courseimage = $this->courseimage($course);

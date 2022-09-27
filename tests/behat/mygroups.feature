@@ -68,58 +68,53 @@ Feature: Add My Groups widget in dash block
     And I click on "Reset Dashboard for all users" "button"
     And I log out
 
-    @javascript
-    Scenario: User groups widget in Dash Block
-      Given I log in as "student1"
-      And I should see "Group C1 1" in the "Dash" "block"
-      And I should see "Group C2 1" in the "Dash" "block"
-      Then the "title" attribute of ".block_dash-community-block .list-block:nth-child(1) img" "css_element" should contain "Student Two"
-      And I click on ".dropdown-toggle" "css_element" in the ".block_dash-community-block .list-block:nth-child(1)" "css_element"
-      And I click on ".group-widget-viewmembers" "css_element" in the ".block_dash-community-block .list-block:nth-child(1)" "css_element"
-      And "Student Two" "table_row" should exist
-      And I click on "Close" "button"
-      And I click on ".dropdown-toggle" "css_element" in the ".block_dash-community-block .list-block:nth-child(2)" "css_element"
-      And I click on ".group-widget-viewmembers" "css_element" in the ".block_dash-community-block .list-block:nth-child(2)" "css_element"
-      Then I should see "Nothing to display" in the ".modal-body h2" "css_element"
+  @javascript
+  Scenario: User groups widget in Dash Block
+    Given I log in as "student1"
+    And I should see "Group C1 1" in the "Dash" "block"
+    And I should see "Group C2 1" in the "Dash" "block"
+    Then the "title" attribute of ".block_dash-community-block .list-block:nth-child(1) img" "css_element" should contain "Max Manager"
+    And I click on ".dropdown-toggle" "css_element" in the ".block_dash-community-block .list-block:nth-child(1)" "css_element"
+    And I click on ".group-widget-viewmembers" "css_element" in the ".block_dash-community-block .list-block:nth-child(1)" "css_element"
+    And "Student Two" "table_row" should exist
+    And I click on "Close" "button"
+    And I click on ".dropdown-toggle" "css_element" in the ".block_dash-community-block .list-block:nth-child(3)" "css_element"
+    And I click on ".group-widget-viewmembers" "css_element" in the ".block_dash-community-block .list-block:nth-child(3)" "css_element"
+    Then I should see "Nothing to display" in the ".modal-body h2" "css_element"
 
-    @javascript
-    Scenario: Leave group using dash block
-      Given I log in as "student1"
-      And I should see "Group C2 1" in the "Dash" "block"
-      And I click on ".dropdown-toggle" "css_element" in the ".block_dash-community-block .list-block:nth-child(3)" "css_element"
-      And I click on ".group-widget-leavegroup" "css_element" in the ".block_dash-community-block .list-block:nth-child(3)" "css_element"
-      And I should see "Do you really want to leave the group Group C2 1" in the ".modal-body" "css_element"
-      And I click on "Confirm" "button"
-      And I should not see "Group C2 1" in the "Dash" "block"
+  @javascript
+  Scenario: Leave group using dash block
+    Given I log in as "student1"
+    And I should see "Group C2 1" in the "Dash" "block"
+    And I click on ".dropdown-toggle" "css_element" in the ".block_dash-community-block .list-block:nth-child(3)" "css_element"
+    And I click on ".group-widget-leavegroup" "css_element" in the ".block_dash-community-block .list-block:nth-child(3)" "css_element"
+    And I should see "Do you really want to leave the group Group C2 1" in the ".modal-body" "css_element"
+    And I click on "Confirm" "button"
+    And I should not see "Group C2 1" in the "Dash" "block"
 
-    @javascript
-    Scenario: Add User to existing group using dash block
-      Given I log in as "manager"
-      And I should see "Group C1 2" in the "Dash" "block"
-      And I click on ".dropdown-toggle" "css_element" in the ".block_dash-community-block .list-block:nth-child(2)" "css_element"
-      And I click on ".add-group-users" "css_element" in the ".block_dash-community-block .list-block:nth-child(2)" "css_element"
-      And I open the autocomplete suggestions list
-      And I click on "Student Three " "li"
-      And I press "Save changes" "button"
-      Then the "title" attribute of ".block_dash-community-block .list-block:nth-child(2) img-block:nth-child(2) img" "css_element" should contain "Student Three"
-      And I click on ".dropdown-toggle" "css_element" in the ".block_dash-community-block .list-block:nth-child(2)" "css_element"
-      And I click on ".group-widget-viewmembers" "css_element" in the ".block_dash-community-block .list-block:nth-child(2)" "css_element"
-      And "Student Three" "table_row" should exist
+  @javascript
+  Scenario: Add User to existing group using dash block
+    Given I log in as "manager"
+    And I should see "Group C1 2" in the "Dash" "block"
+    And I click on ".dropdown-toggle" "css_element" in the ".block_dash-community-block .list-block:nth-child(2)" "css_element"
+    And I click on ".add-group-users" "css_element" in the ".block_dash-community-block .list-block:nth-child(2)" "css_element"
+    And I open the autocomplete suggestions list
+    And I click on "Student Three " item in the autocomplete list
+    And I press "Save changes" "button"
+    Then the "title" attribute of ".block_dash-community-block .list-block:nth-child(2) img-block:nth-child(2) img" "css_element" should contain "Student Three"
+    And I click on ".dropdown-toggle" "css_element" in the ".block_dash-community-block .list-block:nth-child(2)" "css_element"
+    And I click on ".group-widget-viewmembers" "css_element" in the ".block_dash-community-block .list-block:nth-child(2)" "css_element"
+    And "Student Three" "table_row" should exist
 
-    @javascript
-    Scenario: Create a new group using dash block
-      Given I log in as "manager"
-      And I should not see "Group C4 1" in the "Dash" "block"
-      And I click on ".dropdown-toggle" "css_element" in the ".edit-block" "css_element"
-      And I click on ".create-group" "css_element" in the ".edit-block" "css_element"
-      And I set the following fields to these values:
-      | Group name  | Group C4 1 |
-      And I open the autocomplete suggestions list
-      And I click on "Course 4" item in the autocomplete list
-      And I click on "Save changes" "button" in the ".modal-footer" "css_element"
-      And I should see "Group C4 1" in the "Dash" "block"
-
-
-
-
-
+  @javascript
+  Scenario: Create a new group using dash block
+    Given I log in as "manager"
+    And I should not see "Group C4 1" in the "Dash" "block"
+    And I click on ".dropdown-toggle" "css_element" in the ".edit-block" "css_element"
+    And I click on ".create-group" "css_element" in the ".edit-block" "css_element"
+    And I set the following fields to these values:
+    | Group name  | Group C4 1 |
+    And I open the autocomplete suggestions list
+    And I click on "Course 4" item in the autocomplete list
+    And I click on "Save changes" "button" in the ".modal-footer" "css_element"
+    And I should see "Group C4 1" in the "Dash" "block"

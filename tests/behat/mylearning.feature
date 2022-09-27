@@ -13,7 +13,7 @@ Feature: Enable the widget in dash block on the dashboard page and view it's con
     And the following "courses" exist:
       | fullname | shortname | category | enablecompletion|
       | Course 1 | C1        | 0        | 1 |
-      | Course 2 | C2        | CAT1     | 0 | 
+      | Course 2 | C2        | CAT1     | 0 |
       | Course 3 | C3        | CAT2     | 1 |
       | Course 4 | C4        | CAT3     | 1 |
     And the following "users" exist:
@@ -47,7 +47,6 @@ Feature: Enable the widget in dash block on the dashboard page and view it's con
   @javascript
   Scenario: Add the dash mylearning widget block on the dashboard
     Given I log in as "student1"
-    And I am on site homepage
     Then I should see "Course 1" in the "Dash" "block"
     And I should see "Course 2" in the "Dash" "block"
     And I should see "Course 3" in the "Dash" "block"

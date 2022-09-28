@@ -34,7 +34,7 @@ Feature: Enable the widget in dash block on the dashboard page and view it's con
 
     And I log in as "admin"
     And I navigate to "Appearance > Default Dashboard page" in site administration
-    And I click on "Blocks editing on" "button"
+    And I turn block editing mode on
     And I add the "Dash" block
     And I configure the "New Dash" block
     And I click on "#id_config_data_source_idnumber_block_dashlocalwidgetmylearningmylearning_widget" "css_element"

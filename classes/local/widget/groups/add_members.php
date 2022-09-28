@@ -61,7 +61,6 @@ class add_members extends \moodleform {
             'multiple' => true,
             'noselectionstring' => get_string('users'),
             'data-groupid' => $groupid,
-            
         ];
         $mform->addElement('autocomplete', 'users', get_string('user'), [], $options);
         $mform->addRule('users', get_string('required'), 'required', '', 'client');

@@ -74,7 +74,7 @@ Feature: Add user contacts widget in dash block
     And I click on ".contact-widget-viewgroup" "css_element" in the ".block_dash-community-block .contact-element .row div:nth-child(1)" "css_element"
     And I should see "Groups" in the ".modal-title" "css_element"
     And "Group 1" "table_row" should exist
-    And I click on "Close" "button"
+    And I click on ".close" "css_element" in the ".modal-header" "css_element"
     And I hover ".block_dash-community-block .contact-element .row div:nth-child(2) .contact-img-block" "css_element"
     And I click on ".contact-widget-viewgroup" "css_element" in the ".block_dash-community-block .contact-element .row div:nth-child(2) .contact-img-block" "css_element"
     And I should see "Groups" in the ".modal-title" "css_element"

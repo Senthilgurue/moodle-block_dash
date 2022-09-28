@@ -18,7 +18,7 @@
  * Contacts widget class contains the layout information and generate the data for widget.
  *
  * @package    block_dash
- * @copyright  2019 bdecent gmbh <https://bdecent.de>
+ * @copyright  2022 bdecent gmbh <https://bdecent.de>
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
@@ -86,7 +86,7 @@ class contacts_widget extends abstract_widget {
             ? \core_message\api::get_user_contacts($userid) : \core_message\api::get_contacts($userid);
 
         if (defined('\core_message\api::MESSAGE_ACTION_READ')) {
-            $unreadcountssql = 'SELECT DISTINCT m.useridfrom, m.conversationid, count(m.id) as unreadcount
+            $unreadcountssql = 'SELECT DISTINCT m.useridfrom, count(m.id) as unreadcount
                                 FROM {messages} m
                             INNER JOIN {message_conversations} mc
                                     ON mc.id = m.conversationid
@@ -98,7 +98,7 @@ class contacts_widget extends abstract_widget {
                                 WHERE mcm.userid = ?
                                 AND m.useridfrom != ?
                                 AND mua.id is NULL
-                            GROUP BY m.useridfrom, m.conversationid';
+                            GROUP BY m.useridfrom';
             $unreadcounts = $DB->get_records_sql($unreadcountssql,
                 [$userid, \core_message\api::MESSAGE_ACTION_READ, \core_message\api::MESSAGE_ACTION_DELETED,
                 $userid, $userid]

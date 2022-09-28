@@ -22,8 +22,9 @@ Feature: Enable the widget in dash block on the dashboard page and view it's con
       | teacher1 | Teacher   | First    | teacher1@example.com |
 
     And the following "activities" exist:
-      | activity | course | idnumber | name           | intro                 | completion | completionview |
-      | page     | C1     | page1    | Test page name | Test page description | 2          | 1              |
+      | activity | course | idnumber |section | name           | intro                 | completion | completionview |
+      | page     | C1     | page1    | 0 | Test page name | Test page description | 2          | 1              |
+      | page     | C1     | page2    | 1 | Test page name 2 | Test page description | 2          | 1              |
 
     And the following "course enrolments" exist:
       | user | course | role           |
@@ -59,7 +60,8 @@ Feature: Enable the widget in dash block on the dashboard page and view it's con
     And I navigate to "Course completion" in current page administration
     And I expand all fieldsets
     And I set the following fields to these values:
-      | Test page name | 1 |
+      | Test page name   | 1 |
+      | Test page name 2 | 1 |
     And I press "Save changes"
     And I log out
     When I log in as "student1"
@@ -67,7 +69,7 @@ Feature: Enable the widget in dash block on the dashboard page and view it's con
     And I should see "0" in the ".card-header:nth-child(1)" "css_element"
     And I click on "General" "button" in the "Dash" "block"
     Then I click on "Test page name" "link"
-    And I follow "Dashboard" in the user menu
+    And I follow "Dashboard"
     Then the "class" attribute of ".block_dash-info-element .card:nth-child(1)" "css_element" should contain "completed-bg"
     And ".fa.fa-check" "css_element" should exist in the ".block_dash-info-element .card:nth-child(1)" "css_element"
 
@@ -87,7 +89,7 @@ Feature: Enable the widget in dash block on the dashboard page and view it's con
     And I press "Save"
     And I press "Enable access"
     And I press "Continue"
-    And I follow "Recipients (0)"
+    And I follow badge recipients
     And I press "Award badge"
     And I set the field "potentialrecipients[]" to "Student First (student1@example.com)"
     And I press "Award badge"

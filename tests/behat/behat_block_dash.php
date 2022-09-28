@@ -64,7 +64,21 @@ class behat_block_dash extends behat_base {
         if ($CFG->branch >= "400") {
             $this->execute('behat_forms::i_select_from_the_singleselect', ["Recipients (0)", "jump"]);
         } else {
-            $this->execute('behat_general::i_follow', ["Recipients (0)"]);
+            $this->execute('behat_general::i_click_on', ["Recipients (0)", "link"]);
+        }
+    }
+
+    /**
+     * I follow dashboard
+     * @Given I follow dashboard
+     */
+    public function i_follow_dashboard() {
+        global $CFG;
+
+        if ($CFG->branch >= "400") {
+            $this->execute('behat_general::i_click_on', ["Dashboard", 'link']);
+        } else {
+            $this->execute('behat_navigation::i_follow_in_the_user_menu', ["Dashboard"]);
         }
     }
 }

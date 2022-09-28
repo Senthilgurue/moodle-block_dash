@@ -69,7 +69,7 @@ Feature: Enable the widget in dash block on the dashboard page and view it's con
     And I should see "0" in the ".card-header:nth-child(1)" "css_element"
     And I click on "General" "button" in the "Dash" "block"
     Then I click on "Test page name" "link"
-    And I follow "Dashboard"
+    And I follow dashboard
     Then the "class" attribute of ".block_dash-info-element .card:nth-child(1)" "css_element" should contain "completed-bg"
     And ".fa.fa-check" "css_element" should exist in the ".block_dash-info-element .card:nth-child(1)" "css_element"
 

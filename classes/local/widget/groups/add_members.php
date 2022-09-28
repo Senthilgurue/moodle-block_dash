@@ -61,13 +61,7 @@ class add_members extends \moodleform {
             'multiple' => true,
             'noselectionstring' => get_string('users'),
             'data-groupid' => $groupid,
-            'valuehtmlcallback' => function($value) {
-                global $DB, $OUTPUT;
-                $user = $DB->get_record('user', ['id' => (int)$value], '*', IGNORE_MISSING);
-                $details = user_get_user_details($user);
-                return $OUTPUT->render_from_template(
-                        'core_search/form-user-selector-suggestion', $details);
-            }
+            
         ];
         $mform->addElement('autocomplete', 'users', get_string('user'), [], $options);
         $mform->addRule('users', get_string('required'), 'required', '', 'client');

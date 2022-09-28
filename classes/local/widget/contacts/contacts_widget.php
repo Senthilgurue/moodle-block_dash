@@ -98,7 +98,7 @@ class contacts_widget extends abstract_widget {
                                 WHERE mcm.userid = ?
                                 AND m.useridfrom != ?
                                 AND mua.id is NULL
-                            GROUP BY m.useridfrom';
+                            GROUP BY m.useridfrom, m.conversationid';
             $unreadcounts = $DB->get_records_sql($unreadcountssql,
                 [$userid, \core_message\api::MESSAGE_ACTION_READ, \core_message\api::MESSAGE_ACTION_DELETED,
                 $userid, $userid]

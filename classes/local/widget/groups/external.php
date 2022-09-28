@@ -97,8 +97,8 @@ class external extends external_api {
             foreach ($users as $role => $user) {
                 $list = array_merge($list, $user);
             }
-            array_walk($list, function($user) use ($potentialmembersselector) {
-                $user = ['id' => $user->id, 'fullname' => $potentialmembersselector->output_user($user)];
+            array_walk($list, function(&$user) use ($potentialmembersselector) {
+                $user = ['id' => $user->id, 'fullname' => fullname($user)];
             });
 
             return $list;

@@ -98,13 +98,13 @@ Feature: Add My Groups widget in dash block
     And I should see "Group C1 2" in the "Dash" "block"
     And I click on ".dropdown-toggle" "css_element" in the ".block_dash-community-block .list-block:nth-child(2)" "css_element"
     And I click on ".add-group-users" "css_element" in the ".block_dash-community-block .list-block:nth-child(2)" "css_element"
-    And I open the autocomplete suggestions list
-    And I click on "Student Three " item in the autocomplete list
-    And I press "Save changes" "button"
-    Then the "title" attribute of ".block_dash-community-block .list-block:nth-child(2) img-block:nth-child(2) img" "css_element" should contain "Student Three"
+    And I set the following fields to these values:
+    | User  | Student Two |
+    And I click on "Save changes" "button" in the ".modal-footer" "css_element"
+    Then the "title" attribute of ".block_dash-community-block .list-block:nth-child(2) .img-block:nth-child(2) img" "css_element" should contain "Student Two"
     And I click on ".dropdown-toggle" "css_element" in the ".block_dash-community-block .list-block:nth-child(2)" "css_element"
     And I click on ".group-widget-viewmembers" "css_element" in the ".block_dash-community-block .list-block:nth-child(2)" "css_element"
-    And "Student Three" "table_row" should exist
+    And "Student Two" "table_row" should exist
 
   @javascript
   Scenario: Create a new group using dash block

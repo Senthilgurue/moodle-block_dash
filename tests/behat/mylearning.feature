@@ -100,9 +100,9 @@ Feature: Enable the widget in dash block on the dashboard page and view it's con
 
   @javascript
   Scenario: Check the empty state option.
-   Given I log in as "student2"
-   Then I should see "My learaning empty state content" in the "Dash" "block"
-   And I log out
-   When I log in as "student1"
-   Then I should not see "My learaning empty state content" in the "Dash" "block"
-   And I log out
+    Given I log in as "student2"
+    Then I should see "My learaning empty state content" in the "Dash" "block"
+    And I log out
+    When I log in as "student1"
+    Then I should not see "My learaning empty state content" in the "Dash" "block"
+    And I log out

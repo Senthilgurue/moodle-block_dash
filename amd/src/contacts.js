@@ -1,6 +1,6 @@
 define(['jquery', 'core/str', 'core/modal_factory', 'core/modal_events',
-'core/fragment', 'core/templates', 'core/notification', 'core_message/toggle_contact_button'],
-    function($, Str, Modal, ModalEvents, Fragment, Templates, Notification, Contact) {
+'core/fragment', 'core/templates', 'core/notification'],
+    function($, Str, Modal, ModalEvents, Fragment, Templates, Notification) {
 
     return {
         init: function(contextID) {

@@ -247,9 +247,8 @@ class contacts_widget extends abstract_widget {
         JOIN {user} u ON u.id = gm.userid
         WHERE gm.userid != :userid AND g.id IN (
             SELECT groupid FROM {groups_members} WHERE userid = :currentuserid
-        ) GROUP BY u.id';
+        )';
         $groups = $DB->get_records_sql($sql, ['userid' => $userid, 'currentuserid' => $userid]);
-
         $groupstatus = get_config('block_dash', 'suggestgroups');
         $i = 0;
         if (!empty($groups) && $groupstatus) {

@@ -74,7 +74,8 @@ class external extends external_api {
      * @throws \moodle_exception
      * @throws \restricted_context_exception
      */
-    public static function get_block_content($blockinstanceid, $filterformdata, $page, $sortfield, $sortdirection, $pagelayout = '') {
+    public static function get_block_content($blockinstanceid, $filterformdata, $page, $sortfield, $sortdirection,
+        $pagelayout = '') {
         global $PAGE, $DB;
         $params = self::validate_parameters(self::get_block_content_parameters(), [
             'block_instance_id' => $blockinstanceid,

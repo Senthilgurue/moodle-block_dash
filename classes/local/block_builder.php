@@ -73,7 +73,7 @@ class block_builder {
      * @throws \moodle_exception
      */
     public function get_block_content() {
-        global $OUTPUT, $CFG, $PAGE;
+        global $OUTPUT, $CFG;
 
         /** @var renderer $renderer */
         $renderer = $this->blockinstance->page->get_renderer('block_dash');
@@ -102,9 +102,8 @@ class block_builder {
                 'block_context_id' => $this->blockinstance->context->id,
                 'editing' => $editing,
                 'istotara' => block_dash_is_totara(),
-                'pagelayout' => $PAGE->pagelayout,
+                'pagelayout' => $this->blockinstance->page->pagelayout,
             ];
-
             if (isset($this->blockinstance->config->header_content)) {
                 $data['header_content'] = format_text($this->blockinstance->config->header_content['text'],
                         $this->blockinstance->config->header_content['format']);

@@ -33,7 +33,6 @@ define(['jquery', 'jqueryui', 'core/log', 'core/ajax', 'core/notification', 'cor
                         this.refresh();
                     }.bind(this));
             }
-            console.log(this.getRoot());
             this.getRoot().on('change', 'select:not(.norefresh), input:not(.select2-search__field)',
                 function(e) {
                 e.preventDefault();

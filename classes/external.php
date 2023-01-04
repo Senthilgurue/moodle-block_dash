@@ -210,7 +210,7 @@ class external extends external_api {
      *
      * @param string $existingconfig
      * @param string $newconfig
-     * @param string $key
+     * @param string $arraykey
      * @return mixed
      */
     private static function recursive_config_merge($existingconfig, $newconfig, $arraykey = '') {
@@ -223,7 +223,7 @@ class external extends external_api {
         // If array contains only scalars, overwrite with new config. No more looping required for this level.
         if (is_array($existingconfig) && !self::is_array_multidimensional($existingconfig)) {
             if ($arraykey == 'coursecategories') {
-               $existingconfig = $newconfig;
+                $existingconfig = $newconfig;
             } else {
                 return array_merge($existingconfig, $newconfig);
             }

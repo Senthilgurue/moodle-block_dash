@@ -185,7 +185,6 @@ class external extends external_api {
         parse_str($serialiseddata, $data);
         $blockinstance = $DB->get_record('block_instances', ['id' => $context->instanceid]);
         $block = block_instance($blockinstance->blockname, $blockinstance);
-
         if (!empty($block->config)) {
             $config = clone($block->config);
         } else {
@@ -197,7 +196,7 @@ class external extends external_api {
         }
 
         $configpreferences = isset($data['config_preferences']) ? $data['config_preferences'] : [];
-        $config->preferences = self::recursive_config_merge($config->preferences, $configpreferences);
+        $config->preferences = self::recursive_config_merge($config->preferences, $configpreferences, '');
         $block->instance_config_save($config);
 
         return [
@@ -234,7 +233,8 @@ class external extends external_api {
             if (is_scalar($value)) {
                 $existingconfig[$key] = $value;
             } else if (is_array($value)) {
-                $v = self::recursive_config_merge($existingconfig[$key], $newconfig[$key], $key);
+                $v = self::recursive_config_merge(isset($existingconfig[$key]) ? $existingconfig[$key]
+                    : [], $newconfig[$key], $key);
                 unset($existingconfig[$key]);
                 $existingconfig[$key] = $v;
 

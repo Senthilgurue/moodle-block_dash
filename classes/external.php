@@ -183,7 +183,6 @@ class external extends external_api {
         $serialiseddata = json_decode($params['jsonformdata']);
         $data = array();
         parse_str($serialiseddata, $data);
-
         $blockinstance = $DB->get_record('block_instances', ['id' => $context->instanceid]);
         $block = block_instance($blockinstance->blockname, $blockinstance);
 
@@ -211,9 +210,10 @@ class external extends external_api {
      *
      * @param string $existingconfig
      * @param string $newconfig
+     * @param string $key
      * @return mixed
      */
-    private static function recursive_config_merge($existingconfig, $newconfig) {
+    private static function recursive_config_merge($existingconfig, $newconfig, $arraykey = '') {
         // If existing config is a scalar value than always overwrite. No point in looping new config.
         // This allows preferences that were a scalar to be assigned as arrays by new preferences.
         if (is_scalar($existingconfig)) {
@@ -222,7 +222,11 @@ class external extends external_api {
 
         // If array contains only scalars, overwrite with new config. No more looping required for this level.
         if (is_array($existingconfig) && !self::is_array_multidimensional($existingconfig)) {
-            return array_merge($existingconfig, $newconfig);
+            if ($arraykey == 'coursecategories') {
+               $existingconfig = $newconfig;
+            } else {
+                return array_merge($existingconfig, $newconfig);
+            }
         }
 
         // Recursively overwrite values.
@@ -230,7 +234,7 @@ class external extends external_api {
             if (is_scalar($value)) {
                 $existingconfig[$key] = $value;
             } else if (is_array($value)) {
-                $v = self::recursive_config_merge($existingconfig[$key], $newconfig[$key]);
+                $v = self::recursive_config_merge($existingconfig[$key], $newconfig[$key], $key);
                 unset($existingconfig[$key]);
                 $existingconfig[$key] = $v;
 

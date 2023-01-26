@@ -895,3 +895,11 @@ h5:before,
 #page-admin-setting-blocksettingdash #page #page-content #region-main {
     overflow: visible;
 }
+
+.path-totara.used-region-side-pre.used-region-side-post .course-enrol-block .add-course-block .form-group select.form-control + span.select2 {
+    max-width: 380px;
+}
+
+.path-totara.used-region-side-pre.used-region-side-post .dash-block-content .dash-filters form.filter-form > .form-control:last-child {
+    max-width: none;
+}
